@@ -40,7 +40,10 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background-color: #ffffff;
+  background-image: url("/header-pattern.png");
+  background-repeat: repeat;
+  background-position: left center;
   color: var(--ink);
   font-family: var(--font-manrope), "Manrope", sans-serif;
 }
@@ -82,6 +85,13 @@ html.a11y body {
   letter-spacing: 0.01em;
   box-shadow: 0 10px 24px rgba(130, 36, 227, 0.28);
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.help-btn {
+  padding: 1.05rem 1.8rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 16px 36px rgba(130, 36, 227, 0.4);
 }
 
 .sun-btn:hover {

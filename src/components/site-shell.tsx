@@ -5,26 +5,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { address, email, nav, phones, requisites } from "@/lib/content";
 
-function SunMark({ className = "h-11 w-11" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden>
-      <circle cx="32" cy="32" r="13" fill="#dd9933" />
-      {Array.from({ length: 12 }).map((_, index) => (
-        <rect
-          key={index}
-          x="30.2"
-          y="4"
-          width="3.6"
-          height="8"
-          rx="1.8"
-          fill="#8224e3"
-          transform={`rotate(${index * 30} 32 32)`}
-        />
-      ))}
-    </svg>
-  );
-}
-
 export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
@@ -51,7 +31,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[#dd3333]/40 bg-white/80 bg-[url('/header-pattern.png')] bg-repeat-x bg-center backdrop-blur-sm">
       <div className="border-b border-[var(--line)] bg-[var(--mist)]">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-2 text-sm text-[var(--muted)]">
           <div className="flex flex-wrap gap-x-4 gap-y-1">
@@ -68,16 +48,12 @@ export function SiteHeader() {
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <SunMark />
-          <span className="min-w-0">
-            <span className="block font-[family-name:var(--font-unbounded)] text-sm font-semibold leading-tight text-[var(--ink)] sm:text-base">
-              Подари солнечный свет
-            </span>
-            <span className="mt-0.5 block text-xs text-[var(--muted)] sm:text-sm">
-              Помощь детям, рождённым на раннем сроке
-            </span>
-          </span>
+        <Link href="/" className="flex min-w-0 items-center">
+          <img
+            src="/logo.png"
+            alt="БФ «Подари солнечный свет». Помощь детям, рожденным на раннем сроке"
+            className="h-14 w-auto drop-shadow-sm sm:h-[4.5rem]"
+          />
         </Link>
         <form onSubmit={onSearch} className="ml-auto hidden items-center md:flex">
           <input

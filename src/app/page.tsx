@@ -4,7 +4,7 @@ import { news } from "@/lib/content";
 export default function HomePage() {
   return (
     <main>
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#f4e8ff] via-white to-[#e5f7ff]">
+      <section className="relative overflow-hidden bg-white/55">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-20">
           <div className="reveal">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--sun)]">Благотворительный фонд</p>
@@ -15,8 +15,8 @@ export default function HomePage() {
               Мы помогаем семьям с недоношенными детьми получить медицинскую помощь и психологическую поддержку. Ищем системные решения, а не разовые жесты.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link className="sun-btn" href="/blagotvoritel">
-                Помочь фонду
+              <Link className="sun-btn help-btn" href="/blagotvoritel">
+                Помочь детям
               </Link>
               <Link className="ghost-btn" href="/o-fonde">
                 Подробнее о фонде
@@ -44,13 +44,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-[#8224e3] to-[#c654ff] text-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-6 sm:flex-row sm:items-center">
-          <p className="max-w-2xl text-sm leading-6 sm:text-base">
-            Отправьте СМС на номер <strong>3434</strong> с текстом «СВЕТ 250», где 250 — любая комфортная сумма. Для мобильных операторов РФ. Подтвердите платёж.
+      <section className="bg-gradient-to-r from-[#6a12c9] via-[#8224e3] to-[#c654ff] text-white shadow-[0_12px_40px_rgba(130,36,227,0.35)]">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 py-8 sm:flex-row sm:items-center">
+          <p className="max-w-3xl text-lg leading-8 sm:text-xl">
+            Отправьте СМС на номер{" "}
+            <span className="mx-1 inline-block rounded-xl bg-white px-3 py-1 font-[family-name:var(--font-unbounded)] text-3xl font-bold tracking-wide text-[#8224e3] sm:text-4xl">
+              3434
+            </span>{" "}
+            с текстом{" "}
+            <span className="font-[family-name:var(--font-unbounded)] text-2xl font-semibold text-[#ffe38a] sm:text-3xl">
+              «СВЕТ 250»
+            </span>
+            , где 250 — любая комфортная сумма. Для мобильных операторов РФ. Подтвердите платёж.
           </p>
-          <Link href="/pomogat-kazhdiy-den" className="rounded-full bg-white px-5 py-3 text-sm font-bold text-[var(--sun)]">
-            Подробнее
+          <Link href="/pomogat-kazhdiy-den" className="sun-btn help-btn shrink-0 bg-white text-[#8224e3] shadow-lg" style={{ background: "#fff", color: "#8224e3" }}>
+            Помочь детям
           </Link>
         </div>
       </section>
