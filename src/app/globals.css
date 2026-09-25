@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  --sun: #8224e3;
+  --sun-2: #c654ff;
+  --sun-deep: #420069;
+  --ink: #262b2e;
+  --muted: #676b6d;
+  --cyan: #1cd9ea;
+  --sky: #77c6ff;
+  --gold: #dd9933;
+  --paper: #ffffff;
+  --mist: #f4f4f4;
+  --line: #e2e2e2;
+  --ok: #44bb70;
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sun: var(--sun);
+  --color-sun-2: var(--sun-2);
+  --color-sun-deep: var(--sun-deep);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-cyan: var(--cyan);
+  --color-sky: var(--sky);
+  --color-gold: var(--gold);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  --color-ok: var(--ok);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-unbounded);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+}
+
+::selection {
+  background: #e8d4ff;
+  color: var(--sun-deep);
+}
+
+html.a11y body {
+  font-size: 18px;
+}
+
+html.a11y {
+  --paper: #fffce8;
+  --ink: #111111;
+  --muted: #1a1a1a;
+  --sun: #4a0080;
+  --background: #fffce8;
+  --foreground: #111111;
+}
+
+html.a11y body {
+  background: #fffce8;
+  color: #111;
+}
+
+.sun-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.35rem;
+  background: linear-gradient(135deg, #8224e3 20%, #c654ff 100%);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 24px rgba(130, 36, 227, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.sun-btn:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.05);
+  box-shadow: 0 14px 28px rgba(28, 217, 234, 0.28);
+  background: linear-gradient(120deg, #1cd9ea 0%, #507cd4 42%, #8224e3 100%);
+}
+
+.sun-btn:focus-visible,
+.ghost-btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #1cd9ea;
+  outline-offset: 3px;
+}
+
+.ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.8rem 1.2rem;
+  border: 1.5px solid #8224e3;
+  color: #8224e3;
+  font-weight: 700;
+  background: white;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.ghost-btn:hover {
+  background: #8224e3;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.reveal {
+  animation: rise 0.7s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
