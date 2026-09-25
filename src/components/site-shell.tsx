@@ -33,8 +33,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-[#dd3333]/40 bg-white/80 bg-[url('/header-pattern.png')] bg-repeat-x bg-center backdrop-blur-sm">
       <div className="border-b border-[var(--line)] bg-[var(--mist)]">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-2 text-sm text-[var(--muted)]">
-          <div className="flex flex-wrap gap-x-4 gap-y-1">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1 text-xs text-[var(--muted)]">
+          <div className="flex flex-wrap items-center gap-x-3">
             {phones.map((phone) => (
               <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="font-semibold text-[var(--sun)]">
                 {phone}
@@ -44,19 +44,24 @@ export function SiteHeader() {
               {email}
             </a>
           </div>
-          <p className="hidden sm:block">Пн–пт, 10:00–20:00</p>
+          <div className="flex items-center gap-3">
+            <p className="hidden sm:block">Пн–пт, 10:00–20:00</p>
+            <button className="hidden text-[10px] font-semibold uppercase tracking-wide hover:text-[var(--sun)] md:inline" onClick={() => setA11y((value) => !value)}>
+              {a11y ? "Обычная версия" : "Версия для слабовидящих"}
+            </button>
+          </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center gap-5 px-4 py-2 pl-10 sm:pl-16 md:pl-20">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-1.5 pl-8 sm:pl-12 md:pl-16">
         <Link href="/" className="shrink-0">
           <img
             src="/logo.png"
             alt="БФ «Подари солнечный свет». Помощь детям, рожденным на раннем сроке"
-            className="h-14 w-auto drop-shadow-sm sm:h-[4.5rem]"
+            className="h-10 w-auto drop-shadow-sm sm:h-12"
           />
         </Link>
         <nav className="hidden min-w-0 flex-1 items-center md:flex" aria-label="Основное меню">
-          <ul className="flex flex-wrap items-center gap-x-1">
+          <ul className="flex flex-nowrap items-center whitespace-nowrap">
             {nav.map((item) => (
               <li
                 key={item.href}
@@ -66,7 +71,7 @@ export function SiteHeader() {
               >
                 <Link
                   href={item.href}
-                  className={`block px-2.5 py-2 text-sm font-semibold ${
+                  className={`block px-2 py-1.5 text-[13px] font-semibold ${
                     pathname.startsWith(item.href) ? "text-[var(--sun)]" : "text-[var(--ink)]"
                   } hover:text-[var(--sun)]`}
                 >
@@ -89,18 +94,18 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <form onSubmit={onSearch} className="ml-auto hidden items-center lg:flex">
+        <form onSubmit={onSearch} className="ml-auto hidden items-center xl:flex">
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Поиск"
             aria-label="Поиск по сайту"
-            className="w-36 rounded-l-full border border-[var(--line)] bg-white px-4 py-2 text-sm outline-none xl:w-48"
+            className="w-28 rounded-l-full border border-[var(--line)] bg-white px-3 py-1 text-sm outline-none"
           />
-          <button className="rounded-r-full bg-[var(--sun)] px-4 py-2 text-sm font-semibold text-white">Найти</button>
+          <button className="rounded-r-full bg-[var(--sun)] px-3 py-1 text-sm font-semibold text-white">Найти</button>
         </form>
         <button
-          className="ml-auto rounded-full border border-[var(--line)] px-3 py-2 text-sm font-semibold md:hidden"
+          className="ml-auto rounded-full border border-[var(--line)] px-3 py-1.5 text-sm font-semibold md:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
         >
@@ -138,11 +143,6 @@ export function SiteHeader() {
           </button>
         </div>
       )}
-      <div className="hidden justify-end px-4 pb-2 md:flex">
-        <button className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)] hover:text-[var(--sun)]" onClick={() => setA11y((value) => !value)}>
-          {a11y ? "Обычная версия" : "Версия для слабовидящих"}
-        </button>
-      </div>
     </header>
   );
 }
