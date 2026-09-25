@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --sun: #8224e3;
-  --sun-2: #c654ff;
-  --sun-deep: #420069;
-  --ink: #262b2e;
-  --muted: #676b6d;
-  --cyan: #1cd9ea;
-  --sky: #77c6ff;
-  --gold: #dd9933;
-  --paper: #ffffff;
-  --mist: #f4f4f4;
-  --line: #e2e2e2;
-  --ok: #44bb70;
+  --sun: #8d6aa8;
+  --sun-2: #c9a8d8;
+  --sun-deep: #5c3d72;
+  --ink: #4a3f4f;
+  --muted: #7a6e7a;
+  --cyan: #d9c2c8;
+  --sky: #f3e9ee;
+  --gold: #c9a26a;
+  --paper: #fdf8f4;
+  --mist: #f6eef4;
+  --line: #eadce6;
+  --ok: #7aa88a;
   --background: var(--paper);
   --foreground: var(--ink);
 }
@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #fdf8f4;
   background-image: url("/header-pattern.png");
   background-repeat: repeat;
   background-position: left center;
@@ -49,7 +49,7 @@ body {
 }
 
 ::selection {
-  background: #e8d4ff;
+  background: #ecd9f0;
   color: var(--sun-deep);
 }
 
@@ -79,26 +79,25 @@ html.a11y body {
   border: 0;
   border-radius: 999px;
   padding: 0.85rem 1.35rem;
-  background: linear-gradient(135deg, #8224e3 20%, #c654ff 100%);
+  background: linear-gradient(135deg, #a07cbc 8%, #c9a8d8 100%);
   color: white;
   font-weight: 700;
   letter-spacing: 0.01em;
-  box-shadow: 0 10px 24px rgba(130, 36, 227, 0.28);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  box-shadow: 0 10px 24px rgba(141, 106, 168, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .help-btn {
   padding: 1.05rem 1.8rem;
   font-size: 1.125rem;
   letter-spacing: 0.02em;
-  box-shadow: 0 16px 36px rgba(130, 36, 227, 0.4);
+  box-shadow: 0 14px 30px rgba(141, 106, 168, 0.28);
 }
 
 .sun-btn:hover {
   transform: translateY(-2px);
-  filter: saturate(1.05);
-  box-shadow: 0 14px 28px rgba(28, 217, 234, 0.28);
-  background: linear-gradient(120deg, #1cd9ea 0%, #507cd4 42%, #8224e3 100%);
+  background: linear-gradient(135deg, #8d6aa8 8%, #d4b06a 100%);
+  box-shadow: 0 14px 28px rgba(201, 162, 106, 0.28);
 }
 
 .sun-btn:focus-visible,
@@ -107,7 +106,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #1cd9ea;
+  outline: 3px solid #c9a26a;
   outline-offset: 3px;
 }
 
@@ -117,16 +116,16 @@ textarea:focus-visible {
   justify-content: center;
   border-radius: 999px;
   padding: 0.8rem 1.2rem;
-  border: 1.5px solid #8224e3;
-  color: #8224e3;
+  border: 1.5px solid #c9a8d8;
+  color: #8d6aa8;
   font-weight: 700;
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .ghost-btn:hover {
-  background: #8224e3;
-  color: white;
+  background: #f3e9f4;
+  color: #5c3d72;
   transform: translateY(-2px);
 }
 

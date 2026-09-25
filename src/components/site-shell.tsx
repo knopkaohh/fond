@@ -31,10 +31,10 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#dd3333]/40 bg-white/80 bg-[url('/header-pattern.png')] bg-repeat-x bg-center backdrop-blur-sm">
-      <div className="border-b border-[var(--line)] bg-[var(--mist)]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1 text-xs text-[var(--muted)]">
-          <div className="flex flex-wrap items-center gap-x-3">
+    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#fdf8f4]/90 bg-[url('/header-pattern.png')] bg-repeat-x bg-center backdrop-blur-sm">
+      <div className="border-b border-[var(--line)] bg-[#f6eef4]/80">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1.5 text-sm text-[var(--muted)]">
+          <div className="flex flex-wrap items-center gap-x-4">
             {phones.map((phone) => (
               <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="font-semibold text-[var(--sun)]">
                 {phone}
@@ -44,20 +44,20 @@ export function SiteHeader() {
               {email}
             </a>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <p className="hidden sm:block">Пн–пт, 10:00–20:00</p>
-            <button className="hidden text-[10px] font-semibold uppercase tracking-wide hover:text-[var(--sun)] md:inline" onClick={() => setA11y((value) => !value)}>
+            <button className="hidden text-xs font-semibold uppercase tracking-wide hover:text-[var(--sun)] md:inline" onClick={() => setA11y((value) => !value)}>
               {a11y ? "Обычная версия" : "Версия для слабовидящих"}
             </button>
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-1.5 pl-8 sm:pl-12 md:pl-16">
+      <div className="mx-auto flex max-w-7xl items-center gap-5 px-4 py-2.5 pl-10 sm:pl-16 md:pl-20">
         <Link href="/" className="shrink-0">
           <img
             src="/logo.png"
             alt="БФ «Подари солнечный свет». Помощь детям, рожденным на раннем сроке"
-            className="h-10 w-auto drop-shadow-sm sm:h-12"
+            className="h-14 w-auto drop-shadow-sm sm:h-16"
           />
         </Link>
         <nav className="hidden min-w-0 flex-1 items-center md:flex" aria-label="Основное меню">
@@ -71,7 +71,7 @@ export function SiteHeader() {
               >
                 <Link
                   href={item.href}
-                  className={`block px-2 py-1.5 text-[13px] font-semibold ${
+                  className={`block px-3 py-2 text-base font-semibold ${
                     pathname.startsWith(item.href) ? "text-[var(--sun)]" : "text-[var(--ink)]"
                   } hover:text-[var(--sun)]`}
                 >
@@ -83,7 +83,7 @@ export function SiteHeader() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block rounded-xl px-3 py-2 text-sm hover:bg-[#f6e9ff] hover:text-[var(--sun)]"
+                        className="block rounded-xl px-3 py-2 text-sm hover:bg-[#f3e9f4] hover:text-[var(--sun)]"
                       >
                         {child.label}
                       </Link>
@@ -100,9 +100,9 @@ export function SiteHeader() {
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Поиск"
             aria-label="Поиск по сайту"
-            className="w-28 rounded-l-full border border-[var(--line)] bg-white px-3 py-1 text-sm outline-none"
+            className="w-36 rounded-l-full border border-[var(--line)] bg-white/80 px-3.5 py-1.5 text-base outline-none"
           />
-          <button className="rounded-r-full bg-[var(--sun)] px-3 py-1 text-sm font-semibold text-white">Найти</button>
+          <button className="rounded-r-full bg-[var(--sun)] px-3.5 py-1.5 text-base font-semibold text-white">Найти</button>
         </form>
         <button
           className="ml-auto rounded-full border border-[var(--line)] px-3 py-1.5 text-sm font-semibold md:hidden"
@@ -149,7 +149,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-[var(--line)] bg-[var(--mist)]">
+    <footer className="mt-16 border-t border-[var(--line)] bg-[#f6eef4]">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
         <div>
           <h2 className="font-[family-name:var(--font-unbounded)] text-sm font-semibold text-[var(--sun)]">Контакты</h2>
@@ -191,7 +191,7 @@ export function SiteFooter() {
 
 export function PageHero({ crumb, title, lead }: { crumb: string; title: string; lead?: string }) {
   return (
-    <section className="bg-gradient-to-r from-[#f7ecff] via-white to-[#e7f8ff]">
+    <section className="bg-gradient-to-r from-[#f6eef4] via-[#fdf8f4] to-[#f8efe6]">
       <div className="mx-auto max-w-6xl px-4 py-10">
         <p className="text-sm font-semibold text-[var(--sun)]">
           <Link href="/">Главная</Link>

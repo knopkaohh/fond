@@ -47,7 +47,7 @@ export function Blocks({ blocks }: { blocks: PageBlock[] }) {
           );
         }
         return (
-          <p key={index} className="rounded-2xl bg-[#f6e9ff] px-4 py-3 text-sm leading-6 text-[var(--sun-deep)]">
+          <p key={index} className="rounded-2xl bg-[#f3e9f4] px-4 py-3 text-sm leading-6 text-[var(--sun-deep)]">
             {block.text}
           </p>
         );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Unbounded } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { Loader } from "@/components/loader";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import "./globals.css";
@@ -9,9 +9,10 @@ const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
 });
 
-const unbounded = Unbounded({
+const display = Cormorant_Garamond({
   variable: "--font-unbounded",
   subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <body className={`${manrope.variable} ${unbounded.variable} antialiased`}>
+      <body className={`${manrope.variable} ${display.variable} antialiased`}>
         <Loader />
         <SiteHeader />
         {children}

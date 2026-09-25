@@ -4,7 +4,7 @@ import { news } from "@/lib/content";
 export default function HomePage() {
   return (
     <main>
-      <section className="relative overflow-hidden bg-white/55">
+      <section className="relative overflow-hidden bg-[#fdf8f4]/70">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-20">
           <div className="reveal">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--sun)]">Благотворительный фонд</p>
@@ -24,9 +24,9 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative mx-auto h-72 w-72">
-            <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#8224e3] to-[#1cd9ea] opacity-90 blur-2xl" />
+            <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#c9a8d8] to-[#e8d4b0] opacity-80 blur-2xl" />
             <svg viewBox="0 0 200 200" className="relative h-full w-full">
-              <circle cx="100" cy="100" r="46" fill="#ffe38a" />
+              <circle cx="100" cy="100" r="46" fill="#f3e0a8" />
               {Array.from({ length: 16 }).map((_, index) => (
                 <rect
                   key={index}
@@ -35,7 +35,7 @@ export default function HomePage() {
                   width="8"
                   height="28"
                   rx="4"
-                  fill="#8224e3"
+                  fill="#c9a26a"
                   transform={`rotate(${index * 22.5} 100 100)`}
                 />
               ))}
@@ -44,20 +44,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-[#6a12c9] via-[#8224e3] to-[#c654ff] text-white shadow-[0_12px_40px_rgba(130,36,227,0.35)]">
+      <section className="bg-[#f3e9f4] text-[var(--ink)]">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 py-8 sm:flex-row sm:items-center">
           <p className="max-w-3xl text-lg leading-8 sm:text-xl">
             Отправьте СМС на номер{" "}
-            <span className="mx-1 inline-block rounded-xl bg-white px-3 py-1 font-[family-name:var(--font-unbounded)] text-3xl font-bold tracking-wide text-[#8224e3] sm:text-4xl">
+            <span className="mx-1 inline-block rounded-xl bg-white px-3 py-1 font-[family-name:var(--font-unbounded)] text-3xl font-bold tracking-wide text-[var(--sun-deep)] sm:text-4xl">
               3434
             </span>{" "}
             с текстом{" "}
-            <span className="font-[family-name:var(--font-unbounded)] text-2xl font-semibold text-[#ffe38a] sm:text-3xl">
+            <span className="font-[family-name:var(--font-unbounded)] text-2xl font-semibold text-[var(--gold)] sm:text-3xl">
               «СВЕТ 250»
             </span>
             , где 250 — любая комфортная сумма. Для мобильных операторов РФ. Подтвердите платёж.
           </p>
-          <Link href="/pomogat-kazhdiy-den" className="sun-btn help-btn shrink-0 bg-white text-[#8224e3] shadow-lg" style={{ background: "#fff", color: "#8224e3" }}>
+          <Link href="/pomogat-kazhdiy-den" className="sun-btn help-btn shrink-0">
             Помочь детям
           </Link>
         </div>

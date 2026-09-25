@@ -31,13 +31,13 @@ export function Loader() {
       }`}
       style={{
         background:
-          "linear-gradient(135deg, rgba(119,198,255,0.98) 18%, rgba(130,36,227,0.96) 62%, rgba(122,0,124,0.98) 100%)",
+          "linear-gradient(135deg, #f6eef4 10%, #d9c2e0 48%, #c9a26a 100%)",
       }}
       aria-hidden={phase === "leave"}
       role="status"
       aria-label="Страница загружается"
     >
-      <div className="flex flex-col items-center px-6 text-center text-white">
+      <div className="flex flex-col items-center px-6 text-center text-[#5c3d72]">
         <div className="relative mb-6 h-28 w-28">
           <span className="absolute inset-0 animate-ping rounded-full bg-white/30" />
           <span className="absolute inset-3 rounded-full bg-white/20" />
@@ -61,11 +61,11 @@ export function Loader() {
         <p className="font-[family-name:var(--font-unbounded)] text-2xl font-semibold tracking-tight sm:text-3xl">
           Подари солнечный свет
         </p>
-        <p className="mt-2 max-w-sm text-sm text-white/90 sm:text-base">
+        <p className="mt-2 max-w-sm text-sm text-[#5c3d72]/80 sm:text-base">
           Помощь детям, рождённым на раннем сроке
         </p>
-        <div className="mt-8 h-1.5 w-48 overflow-hidden rounded-full bg-white/30">
-          <div className="h-full w-1/2 animate-[load_1.4s_ease-in-out_infinite] rounded-full bg-white" />
+        <div className="mt-8 h-1.5 w-48 overflow-hidden rounded-full bg-[#5c3d72]/20">
+          <div className="h-full w-1/2 animate-[load_1.4s_ease-in-out_infinite] rounded-full bg-[#5c3d72]" />
         </div>
       </div>
       <style>{`@keyframes load { 0% { transform: translateX(-120%);} 100% { transform: translateX(220%);} }`}</style>
