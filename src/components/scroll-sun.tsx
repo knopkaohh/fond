@@ -6,7 +6,7 @@ function SunGraphic({ rotate }: { rotate: number }) {
   return (
     <div
       className="relative h-64 w-64 will-change-transform sm:h-72 sm:w-72"
-      style={{ transform: `rotate(${rotate}deg)` }}
+      style={{ transform: `rotate(${rotate}deg)`, transformOrigin: "center center" }}
     >
       <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#c9a8d8] to-[#e8d4b0] opacity-80 blur-2xl" />
       <svg viewBox="0 0 200 200" className="relative h-full w-full drop-shadow-sm">
@@ -58,8 +58,8 @@ export function ScrollSun() {
   const rotate = useSunRotate();
 
   return (
-    <div className="pointer-events-none absolute inset-y-0 right-0 z-[5] hidden w-64 lg:block xl:w-80" aria-hidden>
-      <div className="sticky top-36 translate-x-1/3 xl:translate-x-1/4">
+    <div className="pointer-events-none absolute inset-y-0 right-4 z-[5] hidden w-80 overflow-visible lg:block xl:right-10" aria-hidden>
+      <div className="sticky top-36">
         <SunGraphic rotate={rotate} />
       </div>
     </div>
