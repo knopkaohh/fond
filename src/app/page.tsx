@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { HeroSun, ScrollSun } from "@/components/scroll-sun";
 import { news } from "@/lib/content";
 
 export default function HomePage() {
   return (
-    <main>
-      <section className="relative overflow-hidden bg-[#fdf8f4]/70">
+    <main className="relative">
+      <ScrollSun />
+      <section className="relative bg-[#fdf8f4]/70">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-20">
           <div className="reveal">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--sun)]">Благотворительный фонд</p>
@@ -23,24 +25,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="relative mx-auto h-72 w-72">
-            <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#c9a8d8] to-[#e8d4b0] opacity-80 blur-2xl" />
-            <svg viewBox="0 0 200 200" className="relative h-full w-full">
-              <circle cx="100" cy="100" r="46" fill="#f3e0a8" />
-              {Array.from({ length: 16 }).map((_, index) => (
-                <rect
-                  key={index}
-                  x="96"
-                  y="18"
-                  width="8"
-                  height="28"
-                  rx="4"
-                  fill="#c9a26a"
-                  transform={`rotate(${index * 22.5} 100 100)`}
-                />
-              ))}
-            </svg>
-          </div>
+          <HeroSun />
         </div>
       </section>
 
