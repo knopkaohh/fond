@@ -58,8 +58,8 @@ export function ScrollSun() {
   const rotate = useSunRotate();
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-[5] hidden lg:block" aria-hidden>
-      <div className="sticky top-32 mx-auto flex max-w-6xl justify-end px-4 pt-16">
+    <div className="pointer-events-none absolute inset-y-0 right-0 z-[5] hidden w-64 lg:block xl:w-80" aria-hidden>
+      <div className="sticky top-36 translate-x-1/3 xl:translate-x-1/4">
         <SunGraphic rotate={rotate} />
       </div>
     </div>
