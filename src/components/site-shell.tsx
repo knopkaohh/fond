@@ -47,21 +47,55 @@ export function SiteHeader() {
           <p className="hidden sm:block">Пн–пт, 10:00–20:00</p>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="flex min-w-0 items-center">
+      <div className="mx-auto flex max-w-6xl items-center gap-5 px-4 py-2 pl-10 sm:pl-16 md:pl-20">
+        <Link href="/" className="shrink-0">
           <img
             src="/logo.png"
             alt="БФ «Подари солнечный свет». Помощь детям, рожденным на раннем сроке"
             className="h-14 w-auto drop-shadow-sm sm:h-[4.5rem]"
           />
         </Link>
-        <form onSubmit={onSearch} className="ml-auto hidden items-center md:flex">
+        <nav className="hidden min-w-0 flex-1 items-center md:flex" aria-label="Основное меню">
+          <ul className="flex flex-wrap items-center gap-x-1">
+            {nav.map((item) => (
+              <li
+                key={item.href}
+                className="relative"
+                onMouseEnter={() => setMenu(item.label)}
+                onMouseLeave={() => setMenu(null)}
+              >
+                <Link
+                  href={item.href}
+                  className={`block px-2.5 py-2 text-sm font-semibold ${
+                    pathname.startsWith(item.href) ? "text-[var(--sun)]" : "text-[var(--ink)]"
+                  } hover:text-[var(--sun)]`}
+                >
+                  {item.label}
+                </Link>
+                {item.children && menu === item.label && (
+                  <div className="absolute left-0 top-full z-30 w-72 rounded-2xl border border-[var(--line)] bg-white p-2 shadow-xl">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block rounded-xl px-3 py-2 text-sm hover:bg-[#f6e9ff] hover:text-[var(--sun)]"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <form onSubmit={onSearch} className="ml-auto hidden items-center lg:flex">
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Поиск"
             aria-label="Поиск по сайту"
-            className="w-40 rounded-l-full border border-[var(--line)] bg-white px-4 py-2 text-sm outline-none lg:w-56"
+            className="w-36 rounded-l-full border border-[var(--line)] bg-white px-4 py-2 text-sm outline-none xl:w-48"
           />
           <button className="rounded-r-full bg-[var(--sun)] px-4 py-2 text-sm font-semibold text-white">Найти</button>
         </form>
@@ -73,40 +107,6 @@ export function SiteHeader() {
           Меню
         </button>
       </div>
-      <nav className="hidden border-t border-[var(--line)] md:block" aria-label="Основное меню">
-        <ul className="mx-auto flex max-w-6xl items-stretch gap-1 px-2">
-          {nav.map((item) => (
-            <li
-              key={item.href}
-              className="relative"
-              onMouseEnter={() => setMenu(item.label)}
-              onMouseLeave={() => setMenu(null)}
-            >
-              <Link
-                href={item.href}
-                className={`block px-3 py-3 text-sm font-semibold ${
-                  pathname.startsWith(item.href) ? "text-[var(--sun)]" : "text-[var(--ink)]"
-                } hover:text-[var(--sun)]`}
-              >
-                {item.label}
-              </Link>
-              {item.children && menu === item.label && (
-                <div className="absolute left-0 top-full z-30 w-72 rounded-2xl border border-[var(--line)] bg-white p-2 shadow-xl">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="block rounded-xl px-3 py-2 text-sm hover:bg-[#f6e9ff] hover:text-[var(--sun)]"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
       {open && (
         <div className="border-t border-[var(--line)] bg-white px-4 py-4 md:hidden">
           <form onSubmit={onSearch} className="mb-4 flex">
