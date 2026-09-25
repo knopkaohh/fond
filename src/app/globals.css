@@ -41,11 +41,20 @@ html {
 
 body {
   background-color: #fdf8f4;
+  color: var(--ink);
+  font-family: var(--font-manrope), "Nunito", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image: url("/header-pattern.png");
   background-repeat: repeat;
   background-position: left center;
-  color: var(--ink);
-  font-family: var(--font-manrope), "Nunito", sans-serif;
+  opacity: 0.16;
 }
 
 ::selection {

@@ -31,7 +31,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#fdf8f4]/90 bg-[url('/header-pattern.png')] bg-repeat-x bg-center backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#fdf8f4]/92 backdrop-blur-sm">
       <div className="border-b border-[var(--line)] bg-[#f6eef4]/80">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1.5 text-sm text-[var(--muted)]">
           <div className="flex flex-wrap items-center gap-x-4">
