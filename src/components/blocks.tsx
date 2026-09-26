@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import type { PageBlock } from "@/lib/content";
 import { requisites } from "@/lib/content";
@@ -13,6 +14,13 @@ export function Blocks({ blocks }: { blocks: PageBlock[] }) {
             <p key={index} className="text-lg leading-8 text-[var(--ink)]">
               {block.text}
             </p>
+          );
+        }
+        if (block.type === "heading") {
+          return (
+            <h2 key={index} className="pt-2 text-2xl font-bold">
+              {block.text}
+            </h2>
           );
         }
         if (block.type === "p") {
@@ -43,6 +51,28 @@ export function Blocks({ blocks }: { blocks: PageBlock[] }) {
                   <p className="mt-2 text-[16px] leading-6 text-[var(--muted)]">{item.text}</p>
                 </article>
               ))}
+            </div>
+          );
+        }
+        if (block.type === "links") {
+          return (
+            <div key={index} className="flex flex-col gap-2">
+              {block.items.map((item) =>
+                item.href.startsWith("/") ? (
+                  <Link key={item.href} href={item.href} className="text-link">
+                    {item.label} →
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    {...(item.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+                    className="text-link"
+                  >
+                    {item.label} →
+                  </a>
+                ),
+              )}
             </div>
           );
         }

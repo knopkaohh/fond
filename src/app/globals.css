@@ -207,6 +207,41 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
+.nav-drop {
+  position: relative;
+}
+
+.nav-drop-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  z-index: 50;
+  min-width: 260px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(67, 40, 77, 0.12);
+}
+
+.nav-drop-wide {
+  display: none;
+  width: min(560px, 70vw);
+  grid-template-columns: 1fr 1fr;
+}
+
+.nav-drop:hover .nav-drop-panel,
+.nav-drop:focus-within .nav-drop-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-drop:hover .nav-drop-wide,
+.nav-drop:focus-within .nav-drop-wide {
+  display: grid;
+}
+
 .mobile-cta {
   position: fixed;
   right: 16px;

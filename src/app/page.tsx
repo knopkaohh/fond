@@ -32,9 +32,9 @@ const projects = [
     image: "/photos/event-3.jpg",
   },
   {
-    title: "Кабинеты сопровождения",
-    text: "Послеродовые кабинеты в перинатальных центрах — от Великого Новгорода до Горно-Алтайска.",
-    href: "/nashi-programmy",
+    title: "Экосистема «Вместе в жизнь»",
+    text: "Кабинеты послеродового сопровождения в перинатальных центрах по всей стране.",
+    href: "/ekosistema-poslerodovoj-podderzhki-vmeste-v-zhizn",
     image: "/photos/hospital.jpg",
   },
 ];
