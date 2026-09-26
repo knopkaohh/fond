@@ -1,27 +1,6 @@
 import Link from "next/link";
 import { news, stories } from "@/lib/content";
 
-const helpCards = [
-  {
-    title: "Детям",
-    text: "Диагностика, лечение, реабилитация, лекарства и оборудование для детей, рождённых раньше срока.",
-    href: "/semiyam",
-    image: "/photos/kids.jpg",
-  },
-  {
-    title: "Родителям",
-    text: "Информация, психологическая поддержка и школа «Новая жизнь вместе» — от роддома до дома.",
-    href: "/opisanie-shkoly",
-    image: "/photos/family.jpg",
-  },
-  {
-    title: "Медицинским учреждениям",
-    text: "Расходные материалы, кабинеты сопровождения и помощь отделениям выхаживания в регионах.",
-    href: "/nashi-programmy",
-    image: "/photos/hospital.jpg",
-  },
-];
-
 const directions = [
   { title: "Медицинская помощь", href: "/semiyam" },
   { title: "Реабилитация", href: "/semiyam" },
@@ -39,7 +18,6 @@ const projects = [
     text: "Встречи с неонатологами, психологами и родителями, которые уже прошли выхаживание.",
     href: "/opisanie-shkoly",
     image: "/photos/event-1.jpg",
-    featured: true,
   },
   {
     title: "Носочки для жизни",
@@ -73,13 +51,7 @@ export default function HomePage() {
         <div className="container-site relative grid items-center gap-10 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24">
           <div>
             <p className="eyebrow">Благотворительный фонд</p>
-            <h1 className="mt-4">
-              Помогаем детям,
-              <br />
-              которые родились
-              <br />
-              раньше срока
-            </h1>
+            <h1 className="mt-4">Помогаем детям, рождённым раньше срока</h1>
             <p className="lead mt-6 max-w-xl">
               Поддерживаем детей и их семьи от первых дней жизни до дальнейшего развития.
             </p>
@@ -104,69 +76,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[var(--lavender)]">
-        <div className="container-site section">
-          <h2>Кому нужна наша помощь</h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {helpCards.map((card) => (
-              <article key={card.title} className="card">
-                <img src={card.image} alt="" className="aspect-[16/10] w-full object-cover" />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold">{card.title}</h3>
-                  <p className="mt-3 text-[17px] leading-7 text-[var(--muted)]">{card.text}</p>
-                  <Link href={card.href} className="text-link mt-5 inline-block">
-                    Подробнее →
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container-site section">
-          <p className="eyebrow">Что мы делаем</p>
-          <h2 className="mt-3">Направления помощи</h2>
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {directions.map((item) => (
-              <Link key={item.title} href={item.href} className="card px-5 py-6 font-semibold hover:border-[var(--violet)]">
-                {item.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[var(--violet)] text-white">
-        <div className="container-site section">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--gold)]">Результаты</p>
-          <h2 className="mt-3 text-white">Работа, которую можно проверить</h2>
-          <div className="mt-12 grid gap-10 md:grid-cols-3">
-            {[
-              ["2015", "Год основания"],
-              ["12", "Кабинетов сопровождения"],
-              ["17 ноября", "День недоношенного ребёнка"],
-            ].map(([value, label]) => (
-              <div key={label}>
-                <p className="text-5xl font-bold tracking-tight text-[var(--gold)] md:text-6xl">{value}</p>
-                <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/80">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section>
         <div className="container-site section grid items-center gap-10 md:grid-cols-2">
           <img src="/photos/about.jpg" alt="Мероприятие фонда" className="aspect-[4/5] w-full rounded-[28px] object-cover md:aspect-[5/6]" />
           <div>
             <p className="eyebrow">О фонде</p>
-            <h2 className="mt-3">
-              Помогаем семьям,
-              <br />
-              когда помощь особенно нужна
-            </h2>
+            <h2 className="mt-3">Кратко о фонде</h2>
             <p className="lead mt-5">
               «Подари солнечный свет» основала в 2015 году Саниям Коваль, мама недоношенного ребёнка. Фонд помогает детям, рождённым раньше срока, и их семьям — в Москве и по всей России.
             </p>
@@ -184,10 +99,43 @@ export default function HomePage() {
 
       <section className="bg-[var(--lavender)]">
         <div className="container-site section">
+          <p className="eyebrow">Что мы делаем</p>
+          <h2 className="mt-3">Направления помощи</h2>
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {directions.map((item) => (
+              <Link key={item.title} href={item.href} className="card px-5 py-6 font-semibold hover:border-[var(--violet)]">
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--violet)] text-white">
+        <div className="container-site section">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--gold)]">Результаты</p>
+          <h2 className="mt-3 text-white">Цифры, которые можно проверить</h2>
+          <div className="mt-12 grid gap-10 md:grid-cols-3">
+            {[
+              ["2015", "Год основания"],
+              ["12", "Кабинетов сопровождения"],
+              ["17 ноября", "День недоношенного ребёнка"],
+            ].map(([value, label]) => (
+              <div key={label}>
+                <p className="text-5xl font-bold tracking-tight text-[var(--gold)] md:text-6xl">{value}</p>
+                <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/80">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container-site section">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Программы</p>
-              <h2 className="mt-3">Наши проекты</h2>
+              <h2 className="mt-3">Проекты</h2>
             </div>
             <Link href="/nashi-programmy" className="text-link hidden sm:inline">
               Все проекты →
@@ -220,42 +168,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section>
-        <div className="container-site section grid items-center gap-10 md:grid-cols-2">
-          <div>
-            <p className="eyebrow">Истории семей</p>
-            <h2 className="mt-3">{story.title}</h2>
-            <p className="mt-2 text-sm font-semibold text-[var(--violet)]">{story.date}</p>
-            <p className="lead mt-5">{story.lead} Когда малыша выписывают домой, вопросы только начинаются. Мамы подопечных делятся тем, что уже прошли.</p>
-            <Link href="/istorii-detey" className="text-link mt-6 inline-block">
-              Читать истории →
-            </Link>
-          </div>
-          <img src="/photos/family.jpg" alt="Семья подопечных фонда" className="aspect-[5/4] w-full rounded-[28px] object-cover" />
-        </div>
-      </section>
-
-      <section className="bg-[var(--violet)] text-white">
-        <div className="container-site section max-w-4xl text-center">
-          <h2 className="text-white">Помочь ребёнку сделать ещё один шаг вперёд</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-7 text-white/85">
-            Ваше пожертвование помогает фонду продолжать программы помощи детям, рождённым раньше срока, и их семьям.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/blagotvoritel" className="btn-gold">
-              Помочь фонду
-            </Link>
-            <Link href="/pomogat-kazhdiy-den" className="rounded-full border border-white/40 px-5 py-3 font-bold text-white">
-              СМС на 3434
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section>
+      <section className="bg-[var(--lavender)]">
         <div className="container-site section">
           <div className="flex items-end justify-between">
-            <h2>Новости фонда</h2>
+            <h2>Новости</h2>
             <Link href="/novosti" className="text-link">
               Все новости →
             </Link>
@@ -278,14 +194,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[var(--lavender)]">
-        <div className="container-site section grid items-center gap-8 md:grid-cols-[1.3fr_0.7fr]">
+      <section>
+        <div className="container-site section grid items-center gap-10 md:grid-cols-2">
+          <img src="/photos/family.jpg" alt="Семья подопечных фонда" className="aspect-[5/4] w-full rounded-[28px] object-cover" />
           <div>
-            <h2>Нужна помощь ребёнку?</h2>
-            <p className="lead mt-4 max-w-2xl">Расскажем, как обратиться в фонд и какие документы необходимы.</p>
+            <p className="eyebrow">Истории семей</p>
+            <h2 className="mt-3">{story.title}</h2>
+            <p className="mt-2 text-sm font-semibold text-[var(--violet)]">{story.date}</p>
+            <p className="lead mt-5">{story.lead} Когда малыша выписывают домой, вопросы только начинаются. Мамы подопечных делятся тем, что уже прошли.</p>
+            <Link href="/istorii-detey" className="text-link mt-6 inline-block">
+              Читать истории →
+            </Link>
           </div>
-          <div className="md:text-right">
-            <Link href="/semiyam" className="btn-secondary">
+        </div>
+      </section>
+
+      <section className="bg-[var(--violet)] text-white">
+        <div className="container-site section">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--gold)]">Как помочь</p>
+            <h2 className="mt-3 text-white">Помочь ребёнку сделать ещё один шаг вперёд</h2>
+            <p className="mt-5 text-lg leading-7 text-white/85">
+              Ваше пожертвование помогает фонду продолжать программы помощи детям, рождённым раньше срока, и их семьям.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link href="/blagotvoritel" className="btn-gold">
+                Помочь фонду
+              </Link>
+              <Link href="/pomogat-kazhdiy-den" className="rounded-full border border-white/40 px-5 py-3 font-bold text-white">
+                СМС на 3434
+              </Link>
+            </div>
+          </div>
+          <div className="mx-auto mt-12 max-w-3xl rounded-[24px] border border-white/15 px-6 py-6 text-center">
+            <p className="font-semibold">Нужна помощь ребёнку?</p>
+            <p className="mt-2 text-sm text-white/75">Расскажем, как обратиться в фонд и какие документы необходимы.</p>
+            <Link href="/semiyam" className="mt-4 inline-flex rounded-full border border-white px-5 py-2.5 text-sm font-bold text-white">
               Получить помощь
             </Link>
           </div>
