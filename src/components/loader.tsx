@@ -11,11 +11,11 @@ export function Loader() {
       setPhase("gone");
       return;
     }
-    const leave = window.setTimeout(() => setPhase("leave"), 1700);
+    const leave = window.setTimeout(() => setPhase("leave"), 900);
     const gone = window.setTimeout(() => {
       sessionStorage.setItem("sun-loader", "1");
       setPhase("gone");
-    }, 2300);
+    }, 1300);
     return () => {
       window.clearTimeout(leave);
       window.clearTimeout(gone);
@@ -26,49 +26,16 @@ export function Loader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[80] flex items-center justify-center transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[80] flex items-center justify-center bg-[#fffdf8] transition-opacity duration-300 ${
         phase === "leave" ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
-      style={{
-        background:
-          "linear-gradient(135deg, #f6eef4 10%, #d9c2e0 48%, #c9a26a 100%)",
-      }}
-      aria-hidden={phase === "leave"}
       role="status"
       aria-label="Страница загружается"
     >
-      <div className="flex flex-col items-center px-6 text-center text-[#5c3d72]">
-        <div className="relative mb-6 h-28 w-28">
-          <span className="absolute inset-0 animate-ping rounded-full bg-white/30" />
-          <span className="absolute inset-3 rounded-full bg-white/20" />
-          <svg viewBox="0 0 120 120" className="relative h-28 w-28 drop-shadow-lg">
-            <circle cx="60" cy="60" r="28" fill="#fff3a1" />
-            {Array.from({ length: 12 }).map((_, index) => (
-              <rect
-                key={index}
-                x="57"
-                y="8"
-                width="6"
-                height="16"
-                rx="3"
-                fill="white"
-                opacity="0.9"
-                transform={`rotate(${index * 30} 60 60)`}
-              />
-            ))}
-          </svg>
-        </div>
-        <p className="font-[family-name:var(--font-unbounded)] text-2xl font-semibold tracking-tight sm:text-3xl">
-          Подари солнечный свет
-        </p>
-        <p className="mt-2 max-w-sm text-sm text-[#5c3d72]/80 sm:text-base">
-          Помощь детям, рождённым на раннем сроке
-        </p>
-        <div className="mt-8 h-1.5 w-48 overflow-hidden rounded-full bg-[#5c3d72]/20">
-          <div className="h-full w-1/2 animate-[load_1.4s_ease-in-out_infinite] rounded-full bg-[#5c3d72]" />
-        </div>
+      <div className="text-center">
+        <img src="/logo.png" alt="" className="mx-auto h-14 w-auto" />
+        <p className="mt-4 text-sm font-semibold text-[var(--muted)]">Подари солнечный свет</p>
       </div>
-      <style>{`@keyframes load { 0% { transform: translateX(-120%);} 100% { transform: translateX(220%);} }`}</style>
     </div>
   );
 }

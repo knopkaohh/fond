@@ -5,22 +5,39 @@ import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { address, email, nav, phones, requisites } from "@/lib/content";
 
+export const primaryNav = [
+  { label: "О фонде", href: "/o-fonde" },
+  { label: "Как помогаем", href: "/nashi-programmy" },
+  { label: "Проекты", href: "/nashi-programmy" },
+  { label: "Истории", href: "/istorii-detey" },
+  { label: "Новости", href: "/novosti" },
+  { label: "Контакты", href: "/kontakty" },
+];
+
 export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [a11y, setA11y] = useState(false);
-  const [menu, setMenu] = useState<string | null>(null);
+  const [compact, setCompact] = useState(false);
 
   useEffect(() => {
     setOpen(false);
-    setMenu(null);
+    setSearchOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("a11y", a11y);
   }, [a11y]);
+
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function onSearch(event: FormEvent) {
     event.preventDefault();
@@ -28,92 +45,89 @@ export function SiteHeader() {
     if (!value) return;
     router.push(`/poisk?q=${encodeURIComponent(value)}`);
     setOpen(false);
+    setSearchOpen(false);
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#fdf8f4]/92 backdrop-blur-sm">
-      <div className="border-b border-[var(--line)] bg-[#f6eef4]/80">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1.5 text-sm text-[var(--muted)]">
-          <div className="flex flex-wrap items-center gap-x-4">
+    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#fffdf8]/95 backdrop-blur-sm">
+      <div className="border-b border-[var(--line)] bg-[#f1eaf4]">
+        <div className="container-site flex items-center justify-between gap-3 py-1 text-xs text-[var(--muted)]">
+          <div className="flex flex-wrap items-center gap-x-3">
             {phones.map((phone) => (
-              <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="font-semibold text-[var(--sun)]">
+              <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="font-semibold text-[var(--violet)]">
                 {phone}
               </a>
             ))}
-            <a href={`mailto:${email}`} className="hover:text-[var(--sun)]">
+            <a href={`mailto:${email}`} className="hidden hover:text-[var(--violet)] sm:inline">
               {email}
             </a>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <p className="hidden sm:block">Пн–пт, 10:00–20:00</p>
-            <button className="hidden text-xs font-semibold uppercase tracking-wide hover:text-[var(--sun)] md:inline" onClick={() => setA11y((value) => !value)}>
-              {a11y ? "Обычная версия" : "Версия для слабовидящих"}
+            <button className="hidden font-semibold uppercase tracking-wide hover:text-[var(--violet)] md:inline" onClick={() => setA11y((value) => !value)}>
+              {a11y ? "Обычная версия" : "Для слабовидящих"}
             </button>
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl items-center gap-5 px-4 py-2.5 pl-10 sm:pl-16 md:pl-20">
+      <div className={`container-site flex items-center gap-6 transition-[padding] duration-300 ${compact ? "py-2" : "py-3.5"}`}>
         <Link href="/" className="shrink-0">
           <img
             src="/logo.png"
-            alt="БФ «Подари солнечный свет». Помощь детям, рожденным на раннем сроке"
-            className="h-14 w-auto drop-shadow-sm sm:h-16"
+            alt="БФ «Подари солнечный свет»"
+            className={`w-auto transition-[height] duration-300 ${compact ? "h-10" : "h-12"}`}
           />
         </Link>
-        <nav className="hidden min-w-0 flex-1 items-center md:flex" aria-label="Основное меню">
-          <ul className="flex flex-nowrap items-center whitespace-nowrap">
-            {nav.map((item) => (
-              <li
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => setMenu(item.label)}
-                onMouseLeave={() => setMenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`block px-3 py-2 text-base font-semibold ${
-                    pathname.startsWith(item.href) ? "text-[var(--sun)]" : "text-[var(--ink)]"
-                  } hover:text-[var(--sun)]`}
-                >
-                  {item.label}
-                </Link>
-                {item.children && menu === item.label && (
-                  <div className="absolute left-0 top-full z-30 w-72 rounded-2xl border border-[var(--line)] bg-white p-2 shadow-xl">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block rounded-xl px-3 py-2 text-sm hover:bg-[#f3e9f4] hover:text-[var(--sun)]"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
+        <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex" aria-label="Основное меню">
+          {primaryNav.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`rounded-full px-3 py-2 text-sm font-semibold ${
+                pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+                  ? "bg-[var(--lavender)] text-[var(--violet)]"
+                  : "text-[var(--ink)] hover:text-[var(--violet)]"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
-        <form onSubmit={onSearch} className="ml-auto hidden items-center xl:flex">
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Поиск"
-            aria-label="Поиск по сайту"
-            className="w-36 rounded-l-full border border-[var(--line)] bg-white/80 px-3.5 py-1.5 text-base outline-none"
-          />
-          <button className="rounded-r-full bg-[var(--sun)] px-3.5 py-1.5 text-base font-semibold text-white">Найти</button>
-        </form>
+        <div className="ml-auto hidden items-center gap-2 lg:flex">
+          <button className="rounded-full px-3 py-2 text-sm font-semibold text-[var(--muted)] hover:text-[var(--violet)]" onClick={() => setSearchOpen((value) => !value)}>
+            Поиск
+          </button>
+          <Link href="/blagotvoritel" className="btn-primary">
+            Помочь
+          </Link>
+        </div>
         <button
-          className="ml-auto rounded-full border border-[var(--line)] px-3 py-1.5 text-sm font-semibold md:hidden"
+          className="ml-auto rounded-full border border-[var(--line)] px-3 py-2 text-sm font-semibold lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
         >
           Меню
         </button>
       </div>
+      {searchOpen && (
+        <div className="border-t border-[var(--line)] bg-white">
+          <form onSubmit={onSearch} className="container-site flex gap-2 py-3">
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Найти на сайте"
+              aria-label="Поиск по сайту"
+              className="w-full rounded-full border border-[var(--line)] px-4 py-2.5"
+              autoFocus
+            />
+            <button className="btn-primary" type="submit">
+              Найти
+            </button>
+          </form>
+        </div>
+      )}
       {open && (
-        <div className="border-t border-[var(--line)] bg-white px-4 py-4 md:hidden">
+        <div className="border-t border-[var(--line)] bg-white px-4 py-4 lg:hidden">
           <form onSubmit={onSearch} className="mb-4 flex">
             <input
               value={query}
@@ -122,11 +136,24 @@ export function SiteHeader() {
               aria-label="Поиск по сайту"
               className="w-full rounded-l-full border border-[var(--line)] px-4 py-2 text-sm"
             />
-            <button className="rounded-r-full bg-[var(--sun)] px-4 text-sm font-semibold text-white">Найти</button>
+            <button className="rounded-r-full bg-[var(--violet)] px-4 text-sm font-semibold text-white">Найти</button>
           </form>
+          <div className="mb-4 flex flex-col gap-1">
+            {primaryNav.map((item) => (
+              <Link key={item.label} href={item.href} className="py-2 font-semibold">
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/blagotvoritel" className="btn-primary mt-2">
+              Помочь
+            </Link>
+            <Link href="/semiyam" className="btn-secondary mt-2">
+              Получить помощь
+            </Link>
+          </div>
           {nav.map((item) => (
             <div key={item.href} className="mb-3">
-              <Link href={item.href} className="font-semibold text-[var(--sun)]">
+              <Link href={item.href} className="text-sm font-semibold text-[var(--violet)]">
                 {item.label}
               </Link>
               <div className="mt-1 flex flex-col">
@@ -149,59 +176,73 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-[var(--line)] bg-[#f6eef4]">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
-        <div>
-          <h2 className="font-[family-name:var(--font-unbounded)] text-sm font-semibold text-[var(--sun)]">Контакты</h2>
-          <p className="mt-3 text-sm leading-6">
-            Телефон: {phones[0]}
-            <br />
-            {phones[1]}
-            <br />
-            E-mail: <a className="text-[var(--sun)]" href={`mailto:${email}`}>{email}</a>
-            <br />
-            Адрес: {address}
-          </p>
-        </div>
-        <div>
-          <h2 className="font-[family-name:var(--font-unbounded)] text-sm font-semibold text-[var(--sun)]">Наши реквизиты</h2>
-          <ul className="mt-3 space-y-1 text-sm leading-6 text-[var(--muted)]">
-            {requisites.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-[family-name:var(--font-unbounded)] text-sm font-semibold text-[var(--sun)]">Разделы</h2>
-          <div className="mt-3 flex flex-col gap-1 text-sm">
-            <Link href="/o-fonde" className="hover:text-[var(--sun)]">О фонде</Link>
-            <Link href="/blagotvoritel" className="hover:text-[var(--sun)]">Благотворителям</Link>
-            <Link href="/volonteram" className="hover:text-[var(--sun)]">Волонтёрам</Link>
-            <Link href="/semiyam" className="hover:text-[var(--sun)]">Школа для родителей</Link>
-            <Link href="/novosti" className="hover:text-[var(--sun)]">Новости</Link>
+    <>
+      <footer className="relative mt-0 overflow-hidden bg-[#27232a] text-[#f6f1ea]">
+        <div className="pattern-soft absolute inset-0 opacity-[0.07]" />
+        <div className="container-site relative grid gap-10 py-16 md:grid-cols-4">
+          <div className="md:col-span-1">
+            <img src="/logo.png" alt="" className="h-12 w-auto brightness-0 invert" />
+            <p className="mt-4 text-sm leading-6 text-[#d8d0d4]">
+              Благотворительный фонд помощи детям, рождённым на раннем сроке. Москва и регионы России.
+            </p>
+            <Link href="/blagotvoritel" className="btn-gold mt-5">
+              Помочь фонду
+            </Link>
+          </div>
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-[var(--gold)]">Навигация</h2>
+            <div className="mt-4 flex flex-col gap-2 text-sm">
+              <Link href="/o-fonde">О фонде</Link>
+              <Link href="/nashi-programmy">Как помогаем</Link>
+              <Link href="/istorii-detey">Истории</Link>
+              <Link href="/novosti">Новости</Link>
+              <Link href="/semiyam">Получить помощь</Link>
+              <Link href="/volonteram">Волонтёрам</Link>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-[var(--gold)]">Контакты</h2>
+            <p className="mt-4 text-sm leading-6">
+              {phones[0]}
+              <br />
+              {phones[1]}
+              <br />
+              <a href={`mailto:${email}`}>{email}</a>
+              <br />
+              {address}
+            </p>
+          </div>
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-[var(--gold)]">Реквизиты</h2>
+            <ul className="mt-4 space-y-1 text-sm leading-6 text-[#d8d0d4]">
+              {requisites.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
-      <div className="border-t border-[var(--line)] py-4 text-center text-xs text-[var(--muted)]">
-        © 2015–2026 Благотворительный фонд помощи детям, рождённым на раннем сроке «Подари солнечный свет»
-      </div>
-    </footer>
+        <div className="relative border-t border-white/10 py-4 text-center text-xs text-[#b7b0b6]">
+          © 2015–2026 Благотворительный фонд помощи детям, рождённым на раннем сроке «Подари солнечный свет»
+        </div>
+      </footer>
+      <Link href="/blagotvoritel" className="mobile-cta btn-primary shadow-lg">
+        Помочь
+      </Link>
+    </>
   );
 }
 
 export function PageHero({ crumb, title, lead }: { crumb: string; title: string; lead?: string }) {
   return (
-    <section className="bg-gradient-to-r from-[#f6eef4] via-[#fdf8f4] to-[#f8efe6]">
-      <div className="mx-auto max-w-6xl px-4 py-10">
-        <p className="text-sm font-semibold text-[var(--sun)]">
+    <section className="bg-[var(--lavender)]">
+      <div className="container-site py-12 md:py-16">
+        <p className="text-sm font-semibold text-[var(--violet)]">
           <Link href="/">Главная</Link>
           <span className="px-2 text-[var(--muted)]">/</span>
           {crumb}
         </p>
-        <h1 className="mt-3 font-[family-name:var(--font-unbounded)] text-3xl font-semibold tracking-tight text-[var(--ink)] sm:text-4xl">
-          {title}
-        </h1>
-        {lead && <p className="mt-4 max-w-3xl text-lg leading-8 text-[var(--muted)]">{lead}</p>}
+        <h1 className="mt-3 max-w-4xl">{title}</h1>
+        {lead && <p className="lead mt-5 max-w-3xl">{lead}</p>}
       </div>
     </section>
   );

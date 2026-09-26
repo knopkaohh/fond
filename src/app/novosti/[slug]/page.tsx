@@ -5,6 +5,8 @@ import { news } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
 
+const images = ["/photos/news-1.jpg", "/photos/news-2.jpg", "/photos/news-3.jpg", "/photos/news-4.jpg"];
+
 export function generateStaticParams() {
   return news.map((item) => ({ slug: item.slug }));
 }
@@ -16,12 +18,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function NewsArticle({ params }: Props) {
   const { slug } = await params;
-  const item = news.find((entry) => entry.slug === slug);
+  const index = news.findIndex((entry) => entry.slug === slug);
+  const item = news[index];
   if (!item) notFound();
   return (
     <main>
       <PageHero crumb="Новости" title={item.title} lead={item.date} />
-      <article className="mx-auto max-w-3xl space-y-4 px-4 py-10">
+      <article className="container-site max-w-3xl space-y-4 py-12">
+        <img src={images[index % images.length]} alt="" className="aspect-[16/9] w-full rounded-[24px] object-cover" />
         {item.body.map((paragraph) => (
           <p key={paragraph} className="leading-8 text-[var(--muted)]">
             {paragraph}

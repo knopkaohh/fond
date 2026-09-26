@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="mx-auto max-w-xl px-4 py-20 text-center">
-      <h1 className="font-[family-name:var(--font-unbounded)] text-3xl font-semibold">Страница не найдена</h1>
-      <p className="mt-3 text-[var(--muted)]">Такого раздела на обновлённом сайте нет. Вернитесь на главную или откройте меню.</p>
-      <Link href="/" className="sun-btn mt-6">
+    <main className="container-site py-20 text-center">
+      <h1>Страница не найдена</h1>
+      <p className="lead mx-auto mt-3 max-w-xl">Такого раздела нет. Вернитесь на главную или откройте меню.</p>
+      <Link href="/" className="btn-primary mt-6">
         На главную
       </Link>
     </main>
