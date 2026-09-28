@@ -212,34 +212,61 @@ textarea:focus-visible {
 }
 
 .nav-drop-panel {
-  display: none;
   position: absolute;
   top: calc(100% - 2px);
   left: 0;
   z-index: 50;
+  display: flex;
+  flex-direction: column;
   min-width: 260px;
   padding: 10px;
   border: 1px solid var(--line);
   border-radius: 20px;
   background: #fff;
   box-shadow: 0 16px 40px rgba(67, 40, 77, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+  transform-origin: top left;
+  transition:
+    opacity 0.32s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.4s;
+}
+
+.nav-drop-panel::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  right: 0;
+  left: 0;
+  height: 12px;
 }
 
 .nav-drop-wide {
-  display: none;
+  display: grid;
   width: min(560px, 70vw);
   grid-template-columns: 1fr 1fr;
 }
 
 .nav-drop:hover .nav-drop-panel,
 .nav-drop:focus-within .nav-drop-panel {
-  display: flex;
-  flex-direction: column;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition:
+    opacity 0.32s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
 }
 
-.nav-drop:hover .nav-drop-wide,
-.nav-drop:focus-within .nav-drop-wide {
-  display: grid;
+@media (prefers-reduced-motion: reduce) {
+  .nav-drop-panel {
+    transform: none;
+    transition: none;
+  }
 }
 
 .mobile-cta {
