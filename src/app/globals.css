@@ -290,6 +290,61 @@ h2,
   background: var(--white);
 }
 
+.hero-photo {
+  position: relative;
+  display: block;
+  border-radius: 28px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-photo-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 28px;
+  background: #fff;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.hero-photo img {
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.hero-photo:hover,
+.hero-photo:focus-visible {
+  transform: translateY(-6px);
+}
+
+.hero-photo:hover .hero-photo-frame,
+.hero-photo:focus-visible .hero-photo-frame {
+  border-color: var(--line);
+  box-shadow: 0 22px 50px rgba(67, 40, 77, 0.16);
+}
+
+.hero-photo:hover img,
+.hero-photo:focus-visible img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .hero-photo-frame,
+  .hero-photo img {
+    transition: none;
+  }
+
+  .hero-photo:hover,
+  .hero-photo:focus-visible,
+  .hero-photo:hover img,
+  .hero-photo:focus-visible img {
+    transform: none;
+  }
+}
+
 .pattern-soft {
   background-image: url("/header-pattern.png");
   background-repeat: repeat;
