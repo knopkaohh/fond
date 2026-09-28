@@ -227,12 +227,12 @@ textarea:focus-visible {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(8px);
+  transform: translateY(12px);
   transform-origin: top left;
   transition:
-    opacity 0.22s ease,
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s linear 0.28s;
+    opacity 0.32s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.4s;
 }
 
 .nav-drop-panel::before {
@@ -257,8 +257,8 @@ textarea:focus-visible {
   pointer-events: auto;
   transform: translateY(0);
   transition:
-    opacity 0.22s ease,
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.32s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     visibility 0s linear 0s;
 }
 
