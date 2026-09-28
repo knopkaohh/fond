@@ -64,15 +64,17 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="relative">
+          <Link href="/meropriyatiya" className="hero-photo" aria-label="Фотогалерея мероприятий фонда">
             <span className="absolute -right-3 -top-3 h-14 w-14 rounded-full bg-[var(--gold)]" aria-hidden />
             <span className="absolute -bottom-4 -left-3 h-8 w-8 rounded-full bg-[var(--violet)]" aria-hidden />
-            <img
-              src="/photos/hero.jpg"
-              alt="Семья на мероприятии фонда «Подари солнечный свет»"
-              className="aspect-[4/5] w-full rounded-[28px] object-cover"
-            />
-          </div>
+            <span className="hero-photo-frame">
+              <img
+                src="/photos/hero.jpg"
+                alt=""
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </span>
+          </Link>
         </div>
       </section>
 
