@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Blocks, ContactForm, GiftForm } from "@/components/blocks";
 import { PageHero } from "@/components/site-shell";
+import { asset } from "@/lib/asset";
 import { blogPosts, findPage, pages, stories } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string[] }> };
@@ -41,7 +42,7 @@ export default async function InnerPage({ params }: Props) {
           )}
           {page.slug === "meropriyatiya" && (
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {["/photos/event-1.jpg", "/photos/event-2.jpg", "/photos/event-3.jpg", "/photos/family.jpg", "/photos/about.jpg", "/photos/hero.jpg"].map((src) => (
+              {["/photos/event-1.jpg", "/photos/event-2.jpg", "/photos/event-3.jpg", "/photos/family.jpg", "/photos/about.jpg", "/photos/hero.jpg"].map((src) => asset(src)).map((src) => (
                 <img key={src} src={src} alt="Мероприятие фонда «Подари солнечный свет»" className="aspect-[16/10] w-full rounded-[20px] object-cover" />
               ))}
             </div>

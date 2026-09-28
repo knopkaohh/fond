@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/site-shell";
+import { asset } from "@/lib/asset";
 import { news } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Новости" };
 
-const images = ["/photos/news-1.jpg", "/photos/news-2.jpg", "/photos/news-3.jpg", "/photos/news-4.jpg"];
+const images = ["/photos/news-1.jpg", "/photos/news-2.jpg", "/photos/news-3.jpg", "/photos/news-4.jpg"].map((src) => asset(src));
 
 export default function NewsPage() {
   return (

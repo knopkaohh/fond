@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import { news, stories } from "@/lib/content";
 
 const results = [
@@ -23,25 +24,25 @@ const projects = [
     title: "Школа «Новая жизнь вместе»",
     text: "Встречи с неонатологами, психологами и родителями, которые уже прошли выхаживание.",
     href: "/opisanie-shkoly",
-    image: "/photos/event-1.jpg",
+    image: asset("/photos/event-1.jpg"),
   },
   {
     title: "Носочки для жизни",
     text: "Волонтёры вяжут носочки, шапочки и шьют пледы для отделений выхаживания.",
     href: "/nosochki-dlya-zhizni",
-    image: "/photos/event-2.jpg",
+    image: asset("/photos/event-2.jpg"),
   },
   {
     title: "Семейный ресурсный центр",
     text: "Площадка в Москве, где живут основные программы фонда.",
     href: "/semejnyj-czentr",
-    image: "/photos/event-3.jpg",
+    image: asset("/photos/event-3.jpg"),
   },
   {
     title: "Экосистема «Вместе в жизнь»",
     text: "Кабинеты послеродового сопровождения в перинатальных центрах по всей стране.",
     href: "/ekosistema-poslerodovoj-podderzhki-vmeste-v-zhizn",
-    image: "/photos/hospital.jpg",
+    image: asset("/photos/hospital.jpg"),
   },
 ];
 
@@ -75,7 +76,7 @@ export default function HomePage() {
             <span className="absolute -bottom-4 -left-3 h-8 w-8 rounded-full bg-[var(--violet)]" aria-hidden />
             <span className="hero-photo-frame">
               <img
-                src="/photos/hero.jpg"
+                src={asset("/photos/hero.jpg")}
                 alt=""
                 className="aspect-[4/5] w-full object-cover"
               />
@@ -88,7 +89,7 @@ export default function HomePage() {
         <div className="container-site section grid items-center gap-10 md:grid-cols-2">
           <Link href="/o-fonde" className="hero-photo" aria-label="Подробнее о фонде">
             <span className="hero-photo-frame">
-              <img src="/photos/about.jpg" alt="" className="aspect-[4/5] w-full object-cover md:aspect-[5/6]" />
+              <img src={asset("/photos/about.jpg")} alt="" className="aspect-[4/5] w-full object-cover md:aspect-[5/6]" />
             </span>
           </Link>
           <div>
@@ -183,7 +184,7 @@ export default function HomePage() {
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {news.slice(0, 3).map((item, index) => (
               <Link key={item.slug} href={`/novosti/${item.slug}`} className="card click-card">
-                <img src={`/photos/news-${index + 1}.jpg`} alt="" className="aspect-[16/10] w-full object-cover" />
+                <img src={asset(`/photos/news-${index + 1}.jpg`)} alt="" className="aspect-[16/10] w-full object-cover" />
                 <div className="p-6">
                   <p className="text-sm font-semibold text-[var(--violet)]">{item.date}</p>
                   <h3 className="mt-2 text-xl font-bold">{item.title}</h3>
@@ -200,7 +201,7 @@ export default function HomePage() {
         <div className="container-site section grid items-center gap-10 md:grid-cols-2">
           <Link href="/istorii-detey" className="hero-photo" aria-label="Читать истории семей">
             <span className="hero-photo-frame">
-              <img src="/photos/family.jpg" alt="" className="aspect-[5/4] w-full object-cover" />
+              <img src={asset("/photos/family.jpg")} alt="" className="aspect-[5/4] w-full object-cover" />
             </span>
           </Link>
           <div>
