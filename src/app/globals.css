@@ -64,6 +64,104 @@ html.a11y body {
   font-size: 19px;
 }
 
+html.sun-loading {
+  overflow: hidden;
+}
+
+.sun-loader {
+  --load: 0;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  background: #fffdf8;
+  transition: opacity 0.48s ease;
+}
+
+.sun-loader.is-leave {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sun-loader-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(720px, 92vw);
+  height: min(320px, 46vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(246, 201, 76, calc(0.14 + var(--load) * 0.52)) 0%,
+    rgba(91, 58, 104, calc(var(--load) * 0.07)) 46%,
+    rgba(255, 253, 248, 0) 72%
+  );
+  filter: blur(8px);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(calc(0.9 + var(--load) * 0.12));
+}
+
+.sun-loader-logo {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 86vw);
+  container-type: inline-size;
+}
+
+.sun-loader-ghost,
+.sun-loader-fill img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sun-loader-ghost {
+  filter: grayscale(1) contrast(0.9);
+  opacity: 0.34;
+}
+
+.sun-loader-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  overflow: hidden;
+}
+
+.sun-loader-fill img {
+  width: 100cqi;
+  max-width: none;
+  height: auto;
+}
+
+.sun-loader-edge {
+  position: absolute;
+  top: -6%;
+  right: 0;
+  width: 2px;
+  height: 112%;
+  background: linear-gradient(180deg, transparent, #f6c94c 18%, #fff 50%, #f6c94c 82%, transparent);
+  box-shadow: 0 0 18px 5px rgba(246, 201, 76, 0.72);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sun-loader,
+  .sun-loader-glow {
+    transition: none;
+  }
+
+  .sun-loader-fill {
+    width: 100%;
+  }
+
+  .sun-loader-edge {
+    display: none;
+  }
+}
+
 .container-site {
   width: min(1220px, calc(100% - 2rem));
   margin-inline: auto;
