@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { news, stories } from "@/lib/content";
 
+const results = [
+  { value: "2015", label: "Год основания", href: "/o-fonde" },
+  { value: "12", label: "Кабинетов сопровождения", href: "/ekosistema-poslerodovoj-podderzhki-vmeste-v-zhizn" },
+  { value: "17 ноября", label: "День недоношенного ребёнка", href: "/meropriyatiya" },
+];
+
 const directions = [
   { title: "Медицинская помощь", href: "/semiyam" },
   { title: "Реабилитация", href: "/semiyam" },
@@ -80,7 +86,11 @@ export default function HomePage() {
 
       <section>
         <div className="container-site section grid items-center gap-10 md:grid-cols-2">
-          <img src="/photos/about.jpg" alt="Мероприятие фонда" className="aspect-[4/5] w-full rounded-[28px] object-cover md:aspect-[5/6]" />
+          <Link href="/o-fonde" className="hero-photo" aria-label="Подробнее о фонде">
+            <span className="hero-photo-frame">
+              <img src="/photos/about.jpg" alt="" className="aspect-[4/5] w-full object-cover md:aspect-[5/6]" />
+            </span>
+          </Link>
           <div>
             <p className="eyebrow">О фонде</p>
             <h2 className="mt-3">Кратко о фонде</h2>
@@ -105,7 +115,7 @@ export default function HomePage() {
           <h2 className="mt-3">Направления помощи</h2>
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {directions.map((item) => (
-              <Link key={item.title} href={item.href} className="card px-5 py-6 font-semibold hover:border-[var(--violet)]">
+              <Link key={item.title} href={item.href} className="card click-card px-5 py-6 font-semibold">
                 {item.title}
               </Link>
             ))}
@@ -118,15 +128,11 @@ export default function HomePage() {
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--gold)]">Результаты</p>
           <h2 className="mt-3 text-white">Цифры, которые можно проверить</h2>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
-            {[
-              ["2015", "Год основания"],
-              ["12", "Кабинетов сопровождения"],
-              ["17 ноября", "День недоношенного ребёнка"],
-            ].map(([value, label]) => (
-              <div key={label}>
-                <p className="text-5xl font-bold tracking-tight text-[var(--gold)] md:text-6xl">{value}</p>
-                <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/80">{label}</p>
-              </div>
+            {results.map((item) => (
+              <Link key={item.label} href={item.href} className="stat-card">
+                <p className="text-5xl font-bold tracking-tight text-[var(--gold)] md:text-6xl">{item.value}</p>
+                <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/80">{item.label}</p>
+              </Link>
             ))}
           </div>
         </div>
@@ -144,27 +150,23 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            <article className="card lg:row-span-3">
+            <Link href={featured.href} className="card click-card lg:row-span-3">
               <img src={featured.image} alt="" className="aspect-[16/10] w-full object-cover lg:aspect-[16/11]" />
               <div className="p-6 md:p-8">
                 <h3 className="text-3xl font-bold">{featured.title}</h3>
                 <p className="mt-3 text-[17px] leading-7 text-[var(--muted)]">{featured.text}</p>
-                <Link href={featured.href} className="text-link mt-5 inline-block">
-                  Подробнее →
-                </Link>
+                <span className="text-link mt-5 inline-block">Подробнее →</span>
               </div>
-            </article>
+            </Link>
             {rest.map((project) => (
-              <article key={project.title} className="card grid sm:grid-cols-[160px_1fr]">
+              <Link key={project.title} href={project.href} className="card click-card grid sm:grid-cols-[160px_1fr]">
                 <img src={project.image} alt="" className="h-40 w-full object-cover sm:h-full" />
                 <div className="p-5">
                   <h3 className="text-xl font-bold">{project.title}</h3>
                   <p className="mt-2 text-[15px] leading-6 text-[var(--muted)]">{project.text}</p>
-                  <Link href={project.href} className="text-link mt-3 inline-block text-sm">
-                    Подробнее →
-                  </Link>
+                  <span className="text-link mt-3 inline-block text-sm">Подробнее →</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -180,17 +182,15 @@ export default function HomePage() {
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {news.slice(0, 3).map((item, index) => (
-              <article key={item.slug} className="card">
+              <Link key={item.slug} href={`/novosti/${item.slug}`} className="card click-card">
                 <img src={`/photos/news-${index + 1}.jpg`} alt="" className="aspect-[16/10] w-full object-cover" />
                 <div className="p-6">
                   <p className="text-sm font-semibold text-[var(--violet)]">{item.date}</p>
                   <h3 className="mt-2 text-xl font-bold">{item.title}</h3>
                   <p className="mt-3 text-[16px] leading-7 text-[var(--muted)]">{item.excerpt}</p>
-                  <Link href={`/novosti/${item.slug}`} className="text-link mt-4 inline-block">
-                    Подробнее →
-                  </Link>
+                  <span className="text-link mt-4 inline-block">Подробнее →</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -198,7 +198,11 @@ export default function HomePage() {
 
       <section>
         <div className="container-site section grid items-center gap-10 md:grid-cols-2">
-          <img src="/photos/family.jpg" alt="Семья подопечных фонда" className="aspect-[5/4] w-full rounded-[28px] object-cover" />
+          <Link href="/istorii-detey" className="hero-photo" aria-label="Читать истории семей">
+            <span className="hero-photo-frame">
+              <img src="/photos/family.jpg" alt="" className="aspect-[5/4] w-full object-cover" />
+            </span>
+          </Link>
           <div>
             <p className="eyebrow">Истории семей</p>
             <h2 className="mt-3">{story.title}</h2>
@@ -228,13 +232,13 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="mx-auto mt-12 max-w-3xl rounded-[24px] border border-white/15 px-6 py-6 text-center">
+          <Link href="/semiyam" className="help-card mx-auto mt-12 max-w-3xl rounded-[24px] border border-white/15 px-6 py-6 text-center">
             <p className="font-semibold">Нужна помощь ребёнку?</p>
             <p className="mt-2 text-sm text-white/75">Расскажем, как обратиться в фонд и какие документы необходимы.</p>
-            <Link href="/semiyam" className="mt-4 inline-flex rounded-full border border-white px-5 py-2.5 text-sm font-bold text-white">
+            <span className="mt-4 inline-flex rounded-full border border-white px-5 py-2.5 text-sm font-bold text-white">
               Получить помощь
-            </Link>
-          </div>
+            </span>
+          </Link>
         </div>
       </section>
     </main>
