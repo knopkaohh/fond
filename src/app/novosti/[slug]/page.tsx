@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/site-shell";
+import { asset } from "@/lib/asset";
 import { news } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
 
-const images = ["/photos/news-1.jpg", "/photos/news-2.jpg", "/photos/news-3.jpg", "/photos/news-4.jpg"];
+const images = ["/photos/news-1.jpg", "/photos/news-2.jpg", "/photos/news-3.jpg", "/photos/news-4.jpg"].map((src) => asset(src));
 
 export function generateStaticParams() {
   return news.map((item) => ({ slug: item.slug }));

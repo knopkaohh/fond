@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "export:fond": "NEXT_PUBLIC_BASE_PATH=/fond next build"
   },
   "dependencies": {
     "framer-motion": "^13.4.4",

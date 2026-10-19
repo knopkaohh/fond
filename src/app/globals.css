@@ -425,7 +425,7 @@ h2,
 }
 
 .pattern-soft {
-  background-image: url("/header-pattern.png");
+  background-image: var(--header-pattern);
   background-repeat: repeat;
   background-size: 420px;
   opacity: 0.07;

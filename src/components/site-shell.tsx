@@ -17,6 +17,7 @@ import {
   socials,
   telHref,
 } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 function isActive(pathname: string, href: string) {
   return pathname === href || (href !== "/" && pathname.startsWith(href));
@@ -97,7 +98,7 @@ export function SiteHeader() {
       <div className={`container-site flex items-center gap-4 transition-[padding] duration-300 ${compact ? "py-2" : "py-3"}`}>
         <Link href="/" className="shrink-0">
           <img
-            src="/logo.png"
+            src={asset("/logo.png")}
             alt="БФ «Подари солнечный свет»"
             className={`w-auto transition-[height] duration-300 ${compact ? "h-10" : "h-12"}`}
           />
@@ -235,7 +236,7 @@ export function SiteFooter() {
         <div className="container-site relative grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-[minmax(240px,1.3fr)_repeat(5,minmax(0,1fr))]">
           <div>
             <Link href="/">
-              <img src="/logo.png" alt="БФ «Подари солнечный свет»" className="h-12 w-auto brightness-0 invert" />
+              <img src={asset("/logo.png")} alt="БФ «Подари солнечный свет»" className="h-12 w-auto brightness-0 invert" />
             </Link>
             <p className="mt-4 text-sm leading-6 text-[#d8d0d4]">
               Благотворительный фонд помощи детям, рождённым на раннем сроке. Москва и регионы России.

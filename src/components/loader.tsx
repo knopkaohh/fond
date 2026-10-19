@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { asset } from "@/lib/asset";
 
 const MIN_MS = 1700;
 
@@ -99,9 +100,9 @@ export function Loader() {
     >
       <div className="sun-loader-glow" aria-hidden="true" />
       <div className="sun-loader-logo">
-        <img src="/logo.png" alt="" className="sun-loader-ghost" />
+        <img src={asset("/logo.png")} alt="" className="sun-loader-ghost" />
         <div className="sun-loader-fill" ref={fillRef}>
-          <img src="/logo.png" alt="БФ «Подари солнечный свет»" />
+          <img src={asset("/logo.png")} alt="БФ «Подари солнечный свет»" />
           <span className="sun-loader-edge" ref={edgeRef} aria-hidden="true" />
         </div>
       </div>
